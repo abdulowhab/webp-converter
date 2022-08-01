@@ -57,6 +57,18 @@
             <img src="" id="Wimage" alt="">
         </div>
     </div>
+
+
+    <script>
+        const Uimage = document.querySelector("#Uimage");
+        const Wimage = document.querySelector("#Wimage");
+        function convertImage(event){
+            if(event.target.files.length > 0){
+                let src = URL.createObjectURL(event.target.files[0]);
+                Uimage.src = src;
+            }
+        }
+    </script>
     
 </body>
 </html>
