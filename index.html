@@ -38,6 +38,21 @@
             margin-top: 40px;
             font-size: 20px;
         }
+        .images{
+            display: flex;
+            flex-wrap: wrap;
+            text-align: center;
+            margin-top: 20px;
+            margin-left: 200px;
+        }
+        .images div{
+            width: 400px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        img{
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -51,9 +66,11 @@
     <div class="images">
 
         <div>
+            <h2>Uploaded Image</h2>
             <img src="" id="Uimage" alt="">
         </div>
         <div>
+            <h2>Converted Image</h2>
             <img src="" id="Wimage" alt="">
         </div>
     </div>
@@ -64,8 +81,27 @@
         const Wimage = document.querySelector("#Wimage");
         function convertImage(event){
             if(event.target.files.length > 0){
+                // Show user image
                 let src = URL.createObjectURL(event.target.files[0]);
                 Uimage.src = src;
+
+                // Convert User image to Canvas
+                let canvas = document.createElement("canvas");
+                let ctx = canvas.getContext("2d");
+                let userImage = new Image();
+                userImage.src = src;
+
+
+                userImage.onload = function(){
+                    canvas.width = userImage.width;
+                    canvas.height = userImage.height;
+                    ctx.drawImage(userImage, 0, 0);
+
+
+                    // Canvas to webp image
+                    let webpImage = canvas.toDataURL("image/webp", 1);
+                    Wimage.src = webpImage;
+                }
             }
         }
     </script>
