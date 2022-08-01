@@ -43,12 +43,20 @@
 <body>
     <div class="convert">
         <h1>Convert Image to Webp Format</h1>
-        <input type="file" accept="image/*" name="convert" id="userImage" multiple>
+        <input type="file" accept="image/*" name="convert" id="userImage" multiple onchange="convertImage(event)">
         <div class="mask">
             <h4>Upload Images</h4>
         </div>
     </div>
-    <div class="images"></div>
+    <div class="images">
+
+        <div>
+            <img src="" id="Uimage" alt="">
+        </div>
+        <div>
+            <img src="" id="Wimage" alt="">
+        </div>
+    </div>
     
 </body>
 </html>
